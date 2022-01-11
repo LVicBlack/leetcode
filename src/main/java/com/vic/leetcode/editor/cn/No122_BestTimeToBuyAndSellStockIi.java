@@ -42,18 +42,45 @@
 // Related Topics 贪心 数组 动态规划 
 // 👍 1514 👎 0
 
-  
+
 package com.vic.leetcode.editor.cn;
-public class No122_BestTimeToBuyAndSellStockIi{
+
+public class No122_BestTimeToBuyAndSellStockIi {
     public static void main(String[] args) {
         Solution solution = new No122_BestTimeToBuyAndSellStockIi().new Solution();
+        int[] prices = new int[]{7, 6, 4, 3, 1};
+        int maxProfit = solution.maxProfit(prices);
+        System.out.println(maxProfit);
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxProfit(int[] prices) {
+            // 贪心
+            int maxProfit = 0;
+            for (int i = 1; i < prices.length; i++) {
+                int spread = prices[i] - prices[i - 1];
+                if (spread > 0)
+                    maxProfit += spread;
+            }
+            return maxProfit;
+        }
+
+        public int maxProfitDP(int[] prices) {
+            // 动态规划
+            int length = prices.length;
+            if (length < 2) return 0;
+            // 0 - 卖出状态 1 - 买入状态 | dp为当前情景下的现金
+            int[][] dp = new int[length][2];
+            dp[0][0] = 0;
+            dp[0][1] = -prices[0];
+            for (int i = 1; i < length; i++) {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+            }
+            return dp[length - 1][0];
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
