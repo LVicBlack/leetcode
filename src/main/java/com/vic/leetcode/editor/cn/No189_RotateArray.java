@@ -49,18 +49,49 @@
 // Related Topics 数组 数学 双指针 
 // 👍 1264 👎 0
 
-  
+
 package com.vic.leetcode.editor.cn;
-public class No189_RotateArray{
+
+import java.util.Arrays;
+
+public class No189_RotateArray {
     public static void main(String[] args) {
         Solution solution = new No189_RotateArray().new Solution();
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public void rotate(int[] nums, int k) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void rotate(int[] nums, int k) {
+            int n = nums.length;
+            k = k % n;
+            int count = gcd(k, n);
+            for (int start = 0; start < count; ++start) {
+                int current = start;
+                int prev = nums[start];
+                do {
+                    int next = (current + k) % n;
+                    int temp = nums[next];
+                    nums[next] = prev;
+                    prev = temp;
+                    current = next;
+                } while (start != current);
+            }
+        }
+
+        public int gcd(int x, int y) {
+            return y > 0 ? gcd(y, x % y) : x;
+        }
+
+        public void rotate1(int[] nums, int k) {
+            // 使用额外的数组
+            int length = nums.length;
+            int[] news = new int[length];
+            for (int i = 0; i < length; i++) {
+                news[(k + i) % length] = nums[i];
+            }
+            System.arraycopy(news, 0, nums, 0, length);
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
