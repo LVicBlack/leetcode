@@ -52,34 +52,41 @@
 
 package com.vic.leetcode.editor.cn;
 
-import java.util.Arrays;
-
 public class No189_RotateArray {
     public static void main(String[] args) {
         Solution solution = new No189_RotateArray().new Solution();
+//        solution.rotate(new int[]{1,2,3,4,5},2);
+        System.out.println(solution.gcd(12, 16));
+        System.out.println(solution.gcd(16, 12));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void rotate(int[] nums, int k) {
-            int n = nums.length;
-            k = k % n;
-            int count = gcd(k, n);
-            for (int start = 0; start < count; ++start) {
-                int current = start;
-                int prev = nums[start];
+            // 环状替换
+            int length = nums.length;
+            k = k % length;
+            int count = gcd(length, k);
+            for (int i = 0; i < count; i++) {
+                int next = i;
+                int prev = nums[i];
+                int temp;
                 do {
-                    int next = (current + k) % n;
-                    int temp = nums[next];
+                    next = (next + k) % length;
+                    temp = nums[next];
                     nums[next] = prev;
                     prev = temp;
-                    current = next;
-                } while (start != current);
+                } while (i != next);
             }
         }
 
-        public int gcd(int x, int y) {
-            return y > 0 ? gcd(y, x % y) : x;
+        public void rotate2(int[] nums, int k) {
+            // 数组翻转
+            int length = nums.length;
+            k = k % length;
+            reverse(nums, 0, length - 1);
+            reverse(nums, 0, k - 1);
+            reverse(nums, k, length - 1);
         }
 
         public void rotate1(int[] nums, int k) {
@@ -90,6 +97,21 @@ public class No189_RotateArray {
                 news[(k + i) % length] = nums[i];
             }
             System.arraycopy(news, 0, nums, 0, length);
+        }
+
+        public void reverse(int[] nums, int start, int end) {
+            int temp;
+            while (start < end) {
+                temp = nums[end];
+                nums[end] = nums[start];
+                nums[start] = temp;
+                start++;
+                end--;
+            }
+        }
+
+        public int gcd(int x, int y) {
+            return y > 0 ? gcd(y, x % y) : x;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
