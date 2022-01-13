@@ -17,18 +17,31 @@
 // Related Topics 位运算 数组 
 // 👍 2187 👎 0
 
-  
+
 package com.vic.leetcode.editor.cn;
-public class No136_SingleNumber{
+
+import java.util.Arrays;
+
+public class No136_SingleNumber {
     public static void main(String[] args) {
         Solution solution = new No136_SingleNumber().new Solution();
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int singleNumber(int[] nums) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int singleNumber(int[] nums) {
+            if(nums.length == 1)
+                return nums[0];
+            Arrays.sort(nums);
+            if (nums[0] != nums[1])
+                return nums[0];
+            for (int i = 1; i < nums.length - 1; i++) {
+                if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1])
+                    return nums[i];
+            }
+            return nums[nums.length - 1];
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
