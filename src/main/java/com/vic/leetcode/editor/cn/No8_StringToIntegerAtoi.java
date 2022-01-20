@@ -112,54 +112,99 @@
 //// Related Topics 字符串 👍 1320 👎 0
 //
 
-  
+
 package com.vic.leetcode.editor.cn;
-public class No8_StringToIntegerAtoi{
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class No8_StringToIntegerAtoi {
     public static void main(String[] args) {
         Solution solution = new No8_StringToIntegerAtoi().new Solution();
+        System.out.println(solution.myAtoi("18446744073709551617"));
+        System.out.println(solution.myAtoi("      -11919730356x"));
+        System.out.println(solution.myAtoi("words and 987"));
+        System.out.println(solution.myAtoi("9223372036854775808"));
+        System.out.println(solution.myAtoi("-5-"));
+        System.out.println(solution.myAtoi("   +0 123"));
+        System.out.println(solution.myAtoi("+-12"));
+        System.out.println(solution.myAtoi("3.14159"));
+        System.out.println(solution.myAtoi("   -42"));
+        System.out.println(solution.myAtoi("-4193 with words"));
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int myAtoi(String s) {
-        long result = 0;
-        int symbol = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (Character.isLetter(c) || '.' == c || (symbol != 0 && Character.isWhitespace(c)))
-                return (int) result * symbol;
-            if (symbol == 0) {
-                if ('-' == c) {
+    class Solution {
+        // 优化
+        public int myAtoi(String s) {
+            long result = 0;
+            int index = 0;
+            int symbol = 1;
+            int length = s.length();
+            // 丢弃无用的前导空格
+            while (index < length && Character.isWhitespace(s.charAt(index))) {
+                index++;
+            }
+            // 符号
+            if (index < length && (s.charAt(index) == '-' || s.charAt(index) == '+')) {
+                if ('-' == s.charAt(index++)) {
                     symbol = -1;
-                } else if ('+' == c) {
+                } else {
                     symbol = 1;
                 }
-            } else if ('-' == c || '+' == c) {
-                return 0;
             }
-            if (Character.isDigit(c)) {
-                if (symbol == 0) {
-                    if (i != 0 && '-' == s.charAt(i - 1)) {
-                        symbol = -1;
-                    } else {
-                        symbol = 1;
-                    }
+            // 计数
+            while (index < length && Character.isDigit(s.charAt(index))) {
+                char c = s.charAt(index);
+                int digit = Character.digit(c, 10);
+                result = 10 * result + digit;
+                if (symbol == 1 && result >= Integer.MAX_VALUE) {
+                    return Integer.MAX_VALUE;
                 }
-                result = result * 10 + Character.digit(c, 10);
-                if (result < 0) {
-                    if (symbol > 0) {
-                        return Integer.MAX_VALUE;
-                    } else {
-                        return Integer.MIN_VALUE;
-                    }
+                if (symbol == -1 && result -1 >= Integer.MAX_VALUE ) {
+                    return Integer.MIN_VALUE;
                 }
+                index++;
             }
+            return (int) (result * symbol);
         }
-        result = result * symbol;
-        if (result > Integer.MAX_VALUE) return Integer.MAX_VALUE;
-        if (result < Integer.MIN_VALUE) return Integer.MIN_VALUE;
-        return (int) result;
+        // 第一版
+        public int myAtoi1(String s) {
+            long result = 0;
+            int symbol = 0;
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if (!Character.isDigit(c) && symbol != 0) break;
+                if (symbol == 0) {
+                    if ('-' == c) {
+                        symbol = -1;
+                    } else if ('+' == c) {
+                        symbol = 1;
+                    } else if (!Character.isDigit(c) && !Character.isWhitespace(c)) {
+                        return 0;
+                    }
+                }
+                if (Character.isDigit(c)) {
+                    if (symbol == 0) symbol = 1;
+                    long temp = result * 10 + Character.digit(c, 10);
+                    if (result > temp) {
+                        if (symbol > 0) {
+                            return Integer.MAX_VALUE;
+                        } else {
+                            return Integer.MIN_VALUE;
+                        }
+                    }
+                    result = temp;
+                } else if (result > 0) {
+                    return (int) result * symbol;
+                }
+            }
+            result = result * symbol;
+            if (result > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            if (result < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+            return (int) result;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
