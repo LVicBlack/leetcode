@@ -135,6 +135,53 @@ public class No8_StringToIntegerAtoi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 有限状态机（deterministic finite automaton, DFA）
+        public int myAtoi(String s) {
+            Automaton automaton = new Automaton();
+            for (int i = 0; i < s.length(); i++) {
+                automaton.work(s.charAt(i));
+            }
+            return (int) (automaton.result * automaton.sign);
+        }
+    }
+
+    class Automaton {
+        public long result = 0;
+        public int sign = 1;
+        private String state = "start";
+
+        private Map<String, String[]> table = new HashMap<String, String[]>() {{
+            put("start", new String[]{"start", "signed", "in_number", "end"});
+            put("signed", new String[]{"end", "end", "in_number", "end"});
+            put("in_number", new String[]{"end", "end", "in_number", "end"});
+            put("end", new String[]{"end", "end", "end", "end"});
+        }};
+
+        public void work(char c) {
+            state = table.get(state)[process(c)];
+            if ("signed".equals(state)) {
+                sign = '-' == c ? -1 : 1;
+            } else if ("in_number".equals(state)) {
+                int digit = Character.digit(c, 10);
+                result = 10 * result + digit;
+                result = sign == 1 ? Math.min(result, (long) Integer.MAX_VALUE) : Math.min(result, -(long) Integer.MIN_VALUE);
+            }
+        }
+
+        private int process(char c) {
+            if (Character.isWhitespace(c)) {
+                return 0;
+            } else if ('+' == c || '-' == c) {
+                return 1;
+            } else if (Character.isDigit(c)) {
+                return 2;
+            } else {
+                return 3;
+            }
+        }
+    }
+
+    class Solution2 {
         // 优化
         public int myAtoi(String s) {
             long result = 0;
@@ -161,13 +208,14 @@ public class No8_StringToIntegerAtoi {
                 if (symbol == 1 && result >= Integer.MAX_VALUE) {
                     return Integer.MAX_VALUE;
                 }
-                if (symbol == -1 && result -1 >= Integer.MAX_VALUE ) {
+                if (symbol == -1 && result - 1 >= Integer.MAX_VALUE) {
                     return Integer.MIN_VALUE;
                 }
                 index++;
             }
             return (int) (result * symbol);
         }
+
         // 第一版
         public int myAtoi1(String s) {
             long result = 0;
