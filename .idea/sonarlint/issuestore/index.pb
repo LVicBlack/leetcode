@@ -36,5 +36,5 @@ s
 Csrc/main/java/com/vic/leetcode/editor/cn/No125_ValidPalindrome.java,7\9\79b175ef2e5ffe9ddfdf03c3e1733d1283d34243
 a
 1src/main/java/com/vic/leetcode/editor/cn/all.json,a\a\aa47761b707c27e42ccc36e4631920f868235284
-I
-.idea/leetcode/editor.xml,4\e\4e1d1083192753a7663628e0017ffffe55ae10ed
+m
+=src/main/java/com/vic/leetcode/editor/cn/doc/translation.json,6\e\6e225ae070c8fc5bf8387976eeea2b14fccc79bf
