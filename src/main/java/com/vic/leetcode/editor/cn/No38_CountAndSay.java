@@ -69,14 +69,14 @@ package com.vic.leetcode.editor.cn;
 public class No38_CountAndSay {
     public static void main(String[] args) {
         Solution solution = new No38_CountAndSay().new Solution();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(solution.countAndSay(i));
+        }
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String countAndSay(int n) {
-            if (n <= 1) {
-                return "1";
-            }
             int index = 2;
             String res = "1";
             while (n >= index++) {
@@ -86,22 +86,19 @@ public class No38_CountAndSay {
         }
 
         String calculate(String x) {
-            String res = "";
-            int count = 0;
-            char num = x.charAt(0);
-            int index = 0;
+            StringBuilder sb = new StringBuilder();
+            int start = 0;
+            int pos = 0;
 
-            while (index < x.length()) {
-                char cur = x.charAt(index++);
-                if (cur == num) {
-                    count++;
-                } else {
-                    res = res + count + num;
-                    count = 1;
-                    num = cur;
+            while (pos < x.length()) {
+                char c = x.charAt(start);
+                while (pos < x.length() && c == x.charAt(pos)) {
+                    pos++;
                 }
+                sb = sb.append(pos - start).append(c);
+                start = pos;
             }
-            return count > 0 ? res + count + num : res;
+            return sb.toString();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
