@@ -50,22 +50,13 @@ public class No19_RemoveNthNodeFromEndOfList {
         Solution solution = new No19_RemoveNthNodeFromEndOfList().new Solution();
         int i = 1;
         ListNode listNode = new ListNode(i++);
-        listNode.next=new ListNode(i++);
-        listNode.next.next=new ListNode(i++);
-        listNode.next.next.next=new ListNode(i++);
-        listNode.next.next.next.next=new ListNode(i++);
-        System.out.print(listNode.val + "、");
-        System.out.print(listNode.next.val+ "、");
-//        System.out.print(listNode.next.next.val+ "、");
-//        System.out.print(listNode.next.next.next.val+ "、");
-//        System.out.println(listNode.next.next.next.next.val);
-
-        System.out.println(solution.removeNthFromEnd(listNode,1).val);
-
-        System.out.print(listNode.val + "、");
-//        System.out.print(listNode.next.val+ "、");
-//        System.out.print(listNode.next.next.val+ "、");
-//        System.out.println(listNode.next.next.next.val);
+        listNode.next = new ListNode(i++);
+        listNode.next.next = new ListNode(i++);
+        listNode.next.next.next = new ListNode(i++);
+        listNode.next.next.next.next = new ListNode(i++);
+        System.out.println(listNode.toString());
+        System.out.println(solution.removeNthFromEnd(listNode, 2).toString());
+        System.out.println(listNode.toString());
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -88,16 +79,21 @@ public class No19_RemoveNthNodeFromEndOfList {
                 head = head.next;
             }
             map.put(index, head);
-            int i = map.size() - n ;
-            ListNode delNode = map.get(i);
-            ListNode next = delNode.next;
-            if (next == null) return null;
-            delNode.val = next.val;
-            delNode.next = next.next;
+            int del = map.size() - n;
+            if (n == 1) {
+                if (del == 0) {
+                    return null;
+                } else {
+                    map.get(del-1).next = null;
+                }
+            } else {
+                ListNode delNode = map.get(del);
+                delNode.val = delNode.next.val;
+                delNode.next = delNode.next.next;
+            }
             return map.get(0);
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
 
     public static class ListNode {
         int val;
@@ -113,6 +109,15 @@ public class No19_RemoveNthNodeFromEndOfList {
         ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            if (this.next == null) {
+                return String.valueOf(this.val);
+            } else {
+                return String.valueOf(this.val) + ", " + this.next.toString();
+            }
         }
     }
 }
