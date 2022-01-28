@@ -37,7 +37,7 @@
 // 
 //
 // 进阶：你能尝试使用一趟扫描实现吗？ 
-// Related Topics 链表 双指针 👍 1769 👎 0
+// Related Topics 链表 双指针 👍 1772 👎 0
 
 
 package com.vic.leetcode.editor.cn;
@@ -48,15 +48,16 @@ import java.util.Map;
 public class No19_RemoveNthNodeFromEndOfList {
     public static void main(String[] args) {
         Solution solution = new No19_RemoveNthNodeFromEndOfList().new Solution();
+
         int i = 1;
         ListNode listNode = new ListNode(i++);
-        listNode.next = new ListNode(i++);
-        listNode.next.next = new ListNode(i++);
-        listNode.next.next.next = new ListNode(i++);
-        listNode.next.next.next.next = new ListNode(i++);
-        System.out.println(listNode.toString());
-        System.out.println(solution.removeNthFromEnd(listNode, 2).toString());
-        System.out.println(listNode.toString());
+//        listNode.next = new ListNode(i++);
+//        listNode.next.next = new ListNode(i++);
+//        listNode.next.next.next = new ListNode(i++);
+//        listNode.next.next.next.next = new ListNode(i++);
+        System.out.println(listNode);
+        System.out.println(solution.removeNthFromEnd(listNode, 1));
+        System.out.println(listNode);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -70,7 +71,32 @@ public class No19_RemoveNthNodeFromEndOfList {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
+    // 计算链表长度
     class Solution {
+
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode(0, head);
+            int size = listSize(head);
+            ListNode cur = dummy;
+            for (int i = 1; i < size - n + 1; i++) {
+                cur = cur.next;
+            }
+            cur.next = cur.next.next;
+            return dummy.next;
+        }
+
+        private int listSize(ListNode head) {
+            int size = 1;
+            while (head.next != null) {
+                size++;
+                head = head.next;
+            }
+            return size;
+        }
+    }
+
+    // map
+    class Solution1 {
         public ListNode removeNthFromEnd(ListNode head, int n) {
             Map<Integer, ListNode> map = new HashMap<>();
             int index = 0;
@@ -84,7 +110,7 @@ public class No19_RemoveNthNodeFromEndOfList {
                 if (del == 0) {
                     return null;
                 } else {
-                    map.get(del-1).next = null;
+                    map.get(del - 1).next = null;
                 }
             } else {
                 ListNode delNode = map.get(del);
@@ -95,6 +121,7 @@ public class No19_RemoveNthNodeFromEndOfList {
         }
     }
 
+    //leetcode submit region end(Prohibit modification and deletion)
     public static class ListNode {
         int val;
         ListNode next;
