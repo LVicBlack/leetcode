@@ -42,7 +42,9 @@
 
 package com.vic.leetcode.editor.cn;
 
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class No19_RemoveNthNodeFromEndOfList {
@@ -51,12 +53,12 @@ public class No19_RemoveNthNodeFromEndOfList {
 
         int i = 1;
         ListNode listNode = new ListNode(i++);
-//        listNode.next = new ListNode(i++);
-//        listNode.next.next = new ListNode(i++);
-//        listNode.next.next.next = new ListNode(i++);
-//        listNode.next.next.next.next = new ListNode(i++);
+        listNode.next = new ListNode(i++);
+        listNode.next.next = new ListNode(i++);
+        listNode.next.next.next = new ListNode(i++);
+        listNode.next.next.next.next = new ListNode(i++);
         System.out.println(listNode);
-        System.out.println(solution.removeNthFromEnd(listNode, 1));
+        System.out.println(solution.removeNthFromEnd(listNode, 2));
         System.out.println(listNode);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -71,8 +73,67 @@ public class No19_RemoveNthNodeFromEndOfList {
      * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
-    // 计算链表长度
+    // 回溯法
     class Solution {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            int traverse = traverse(head, n);
+            if(traverse == n)
+                return head.next;
+            return head;
+        }
+
+        private int traverse(ListNode node, int n) {
+            if(node == null)
+                return 0;
+            int num = traverse(node.next, n);
+            if(num == n)
+                node.next = node.next.next;
+            return num + 1;
+        }
+    }
+    // 双指针
+    class Solution4 {
+
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode(0, head);
+            ListNode first = dummy;
+            ListNode second = dummy;
+            // 双指针的间距
+            int gap = 0;
+
+            while (first != null) {
+                first = first.next;
+                if (gap++ > n) {
+                    second = second.next;
+                }
+            }
+            second.next = second.next.next;
+            return dummy.next;
+        }
+    }
+
+    // 栈
+    class Solution3 {
+
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode(0, head);
+            Deque<ListNode> stack = new LinkedList<>();
+            ListNode cur = dummy;
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.next;
+            }
+            for (int i = 0; i < n; i++) {
+                stack.pop();
+            }
+            ListNode pre = stack.peek();
+            pre.next = pre.next.next;
+            return dummy.next;
+        }
+    }
+
+    // 计算链表长度
+    class Solution2 {
 
         public ListNode removeNthFromEnd(ListNode head, int n) {
             ListNode dummy = new ListNode(0, head);
@@ -122,7 +183,7 @@ public class No19_RemoveNthNodeFromEndOfList {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
