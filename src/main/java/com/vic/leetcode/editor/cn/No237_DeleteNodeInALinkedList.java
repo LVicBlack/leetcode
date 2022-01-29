@@ -78,7 +78,7 @@ public class No237_DeleteNodeInALinkedList {
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next;
 
