@@ -58,6 +58,48 @@ public class No206_ReverseLinkedList {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
+    // 递归
+    //
+    // 时间复杂度：O(n)，其中 n 是链表的长度。需要对链表的每个节点进行反转操作。
+    // 空间复杂度：O(n)，其中 n 是链表的长度。空间复杂度主要取决于递归调用的栈空间，最多为 n 层。
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            // 末尾节点开始出栈反转
+            if (head == null || head.next == null) {
+                return head;
+            }
+            ListNode newNode = reverseList(head.next);
+            // newNode 不是末尾, newNode.next 不能直接指向 head
+            // 新老链表末尾互指产生局域环。head.next是newNode的末尾非空节点
+            // e.g. head = 3->4->null, ori: 1->2->3->4->null, new: null<-4<-5
+            head.next.next = head;// 1->2->3<->4<-5
+            // 切断, 初始链表尾部指向null
+            head.next = null;// ori: 1->2->3->null, new: null<-3<-4<-5
+            return newNode;
+        }
+    }
+
+    // 遍历
+    // 时间复杂度：O(n)，其中 n 是链表的长度。需要遍历链表一次。
+    // 空间复杂度：O(1)。
+    class Solution1 {
+        public ListNode reverseList(ListNode head) {
+            ListNode prev = null;
+            ListNode cur = head;
+            while (cur != null) {
+                // 缓存遍历节点的下一个节点
+                ListNode next = cur.next;
+                // 反转
+                cur.next = prev;
+                prev = cur;
+                // 下一节点
+                cur = next;
+            }
+            return prev;
+        }
+    }
+
+    //leetcode submit region end(Prohibit modification and deletion)
     private static class ListNode {
         int val;
         ListNode next;
@@ -83,23 +125,4 @@ public class No206_ReverseLinkedList {
             }
         }
     }
-
-    class Solution {
-        public ListNode reverseList(ListNode head) {
-            ListNode reverse = reverse(head);
-            reverse.next = null;
-            return reverse;
-        }
-
-        private ListNode reverse(ListNode node) {
-            if (node.next == null) {
-                return node;
-            }
-            ListNode prev = reverse(node.next);
-            prev.next = node;
-            return node;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
-
 }
