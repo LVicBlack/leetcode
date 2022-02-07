@@ -52,6 +52,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No101_SymmetricTree.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No101_SymmetricTree.java" />
+              <option name="questionId" value="101" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No104_MaximumDepthOfBinaryTree.java">
           <value>
             <LeetcodeEditor>
@@ -100,6 +108,14 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No136_SingleNumber.java" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1405_LongestHappyString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1405_LongestHappyString.java" />
+              <option name="questionId" value="1304" />
             </LeetcodeEditor>
           </value>
         </entry>
