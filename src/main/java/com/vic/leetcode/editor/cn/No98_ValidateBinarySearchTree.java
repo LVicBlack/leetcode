@@ -38,9 +38,16 @@
 
 package com.vic.leetcode.editor.cn;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class No98_ValidateBinarySearchTree {
     public static void main(String[] args) {
         Solution solution = new No98_ValidateBinarySearchTree().new Solution();
+        boolean validBST = solution.isValidBST(new TreeNode(10,
+                new TreeNode(1, new TreeNode(0), new TreeNode(2)),
+                new TreeNode(13, new TreeNode(11), new TreeNode(14))));
+        System.out.println(validBST);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -59,9 +66,21 @@ public class No98_ValidateBinarySearchTree {
      * }
      * }
      */
-    //TODO 中序遍历
+    // 中序遍历
     class Solution {
         public boolean isValidBST(TreeNode root) {
+            long value = Long.MIN_VALUE;
+            Deque<TreeNode> stack = new LinkedList<>();
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                TreeNode first = stack.pop();
+                if (first.val <= value) return false;
+                value = first.val;
+                root = first.right;
+            }
             return true;
         }
     }
@@ -82,7 +101,7 @@ public class No98_ValidateBinarySearchTree {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
