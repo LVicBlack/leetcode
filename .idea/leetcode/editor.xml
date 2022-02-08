@@ -52,6 +52,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1001_GridIllumination.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1001_GridIllumination.java" />
+              <option name="questionId" value="1043" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No101_SymmetricTree.java">
           <value>
             <LeetcodeEditor>
@@ -230,6 +238,14 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No26_RemoveDuplicatesFromSortedArray.java" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No278_FirstBadVersion.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No278_FirstBadVersion.java" />
+              <option name="questionId" value="278" />
             </LeetcodeEditor>
           </value>
         </entry>
