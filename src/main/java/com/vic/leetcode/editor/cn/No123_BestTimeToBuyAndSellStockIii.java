@@ -55,28 +55,50 @@ public class No123_BestTimeToBuyAndSellStockIii {
     public static void main(String[] args) {
         Solution solution = new No123_BestTimeToBuyAndSellStockIii().new Solution();
         int i = solution.maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
+        int i1 = solution.maxProfit(new int[]{1, 2, 3, 4, 5});
         System.out.println(i);
+        System.out.println(i1);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    // 优化
     class Solution {
+        public int maxProfit(int[] prices) {
+            int length = prices.length;
+            int k = 2;
+            int[][] buy = new int[length][k];
+            int[][] sell = new int[length][k];
+            buy[0][0] = buy[0][1] = -prices[0];
+            sell[0][0] = sell[0][1] = 0;
+            for (int i = 1; i < length; i++) {
+                buy[i][0] = Math.max()
+            }
+        }
+    }
+
+    class Solution1 {
         public int maxProfit(int[] prices) {
             int k = 2;
             int length = prices.length;
             // [天数][抛售次数][1-持有/0-抛售]
             int[][][] dp = new int[length][3][2];
 //            dp[0][0][0] = 0;
-//            dp[0][0][1] = -prices[0];
 //            dp[0][1][0] = 0;
 //            dp[0][1][1] = -prices[0];
+//            dp[0][2][0] = 0;
+//            dp[0][2][1] = -prices[0];
+            dp[0][0][0] = 0;
+            dp[0][0][1] = -prices[0];
+            dp[0][1][0] = 0;
+            dp[0][1][1] = -prices[0];
             for (int i = 1; i < length; i++) {
                 int price = prices[i];
                 for (int j = k; j > 0; j--) {
-                    dp[i][k][0] = Math.max(dp[i - 1][k][0], dp[i - 1][k][1] + price);
-                    dp[i][k][1] = Math.max(dp[i - 1][k][1], dp[i - 1][k-1][0] - price);
+                    dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1] + price);
+                    dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - price);
                 }
             }
-            return dp[length-1][k][0];
+            return dp[length - 1][k][0];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
