@@ -111,6 +111,15 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No122_BestTimeToBuyAndSellStockIi.java" />
+              <option name="questionId" value="122" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No123_BestTimeToBuyAndSellStockIii.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No123_BestTimeToBuyAndSellStockIii.java" />
+              <option name="questionId" value="123" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -157,6 +166,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No14_LongestCommonPrefix.java" />
               <option name="questionId" value="14" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No188_BestTimeToBuyAndSellStockIv.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No188_BestTimeToBuyAndSellStockIv.java" />
+              <option name="questionId" value="188" />
             </LeetcodeEditor>
           </value>
         </entry>
