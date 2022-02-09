@@ -48,7 +48,7 @@ package com.vic.leetcode.editor.cn;
 public class No122_BestTimeToBuyAndSellStockIi {
     public static void main(String[] args) {
         Solution solution = new No122_BestTimeToBuyAndSellStockIi().new Solution();
-        int[] prices = new int[]{7, 6, 4, 3, 1};
+        int[] prices = new int[]{7, 1, 5, 3, 6, 4};
         int maxProfit = solution.maxProfit(prices);
         System.out.println(maxProfit);
     }
@@ -75,7 +75,11 @@ public class No122_BestTimeToBuyAndSellStockIi {
             dp[0][0] = 0;
             dp[0][1] = -prices[0];
             for (int i = 1; i < length; i++) {
+                // 第 i 天手里没有股票的最大利润
+                // 比较前一天没有时的利润 和 前一天有股票今天卖出时的利润 取最大值
                 dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                // 第 i 天手里持有一支股票的最大利润
+                // 比较前一天有股票时的利润 和 前一天没有股票今天买入时的利润 取最大值
                 dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
             }
             return dp[length - 1][0];
