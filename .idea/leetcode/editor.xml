@@ -103,6 +103,7 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No121_BestTimeToBuyAndSellStock.java" />
+              <option name="questionId" value="121" />
             </LeetcodeEditor>
           </value>
         </entry>
