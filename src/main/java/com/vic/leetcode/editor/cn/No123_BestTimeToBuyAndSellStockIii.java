@@ -61,18 +61,53 @@ public class No123_BestTimeToBuyAndSellStockIii {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    // 优化
+
+    /**
+     * 优化
+     * 直接使用当日的买入/卖出进行转移。
+     * 例如 在计算 sell[i]时，我们直接使用 buy[i]而不是buy[i-2]进行转移。
+     * buy[i]比buy[i-2]多考虑的是在第 i 天买入股票的情况，
+     * 而转移到 sell[i]时，考虑的是在第 i 天卖出股票的情况，这样在同一天买入并且卖出收益为零，不会对答案产生影响。
+     */
     class Solution {
         public int maxProfit(int[] prices) {
             int length = prices.length;
             int k = 2;
-            int[][] buy = new int[length][k];
-            int[][] sell = new int[length][k];
-            buy[0][0] = buy[0][1] = -prices[0];
-            sell[0][0] = sell[0][1] = 0;
+            int[] buy = new int[k + 1];
+            int[] sell = new int[k + 1];
+            buy[2] = buy[1] = -prices[0];
+            sell[2] = sell[1] = 0;
             for (int i = 1; i < length; i++) {
-                buy[i][0] = Math.max()
+                int price = prices[i];
+                buy[1] = Math.max(buy[1], sell[0] - price);
+                sell[1] = Math.max(sell[1], buy[1] + price);
+                buy[2] = Math.max(buy[2], sell[1] - price);
+                sell[2] = Math.max(sell[2], buy[2] + price);
             }
+            return sell[2];
+        }
+    }
+
+    class Solution2 {
+        public int maxProfit(int[] prices) {
+            int length = prices.length;
+            int k = 2;
+            // [抛售次数][天数]
+            int[][] buy = new int[k + 1][length];
+            int[][] sell = new int[k + 1][length];
+            buy[2][0] = buy[1][0] = -prices[0];
+            sell[2][0] = sell[1][0] = 0;
+            for (int i = 1; i < length; i++) {
+                int price = prices[i];
+                for (int j = 1; j <= k; j++) {
+                    // 前一天持有和上次抛售后购入
+                    buy[j][i] = Math.max(buy[j][i - 1], sell[j - 1][i - 1] - price);
+
+                    // 前一天抛售和前一天持有今天抛售
+                    sell[j][i] = Math.max(sell[j][i - 1], buy[j][i - 1] + price);
+                }
+            }
+            return sell[k][length - 1];
         }
     }
 
