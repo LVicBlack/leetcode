@@ -289,6 +289,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No300_LongestIncreasingSubsequence.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No300_LongestIncreasingSubsequence.java" />
+              <option name="questionId" value="300" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No344_ReverseString.java">
           <value>
             <LeetcodeEditor>
@@ -337,6 +345,14 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No48_RotateImage.java" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No53_MaximumSubarray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No53_MaximumSubarray.java" />
+              <option name="questionId" value="53" />
             </LeetcodeEditor>
           </value>
         </entry>
