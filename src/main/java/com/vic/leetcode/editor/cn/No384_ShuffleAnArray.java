@@ -50,6 +50,7 @@ public class No384_ShuffleAnArray {
         int[] nums = new int[]{1, 2, 3, 5, 6, 7};
         Solution solution = new No384_ShuffleAnArray().new Solution(nums);
         System.out.println(Arrays.toString(solution.shuffle()));
+//        System.out.println(new Random().nextInt(1));
     }
 
 
@@ -71,15 +72,17 @@ public class No384_ShuffleAnArray {
 
         public int[] shuffle() {
             int[] shuffled = new int[nums.length];
+            // 随机数从0开始
             Random random = new Random();
-            int len = nums.length - 1;
+            // 随机数组长度
+            int len = nums.length;
             for (int i = 0; i < nums.length; ++i) {
                 int index = random.nextInt(len);
-                System.out.println(index);
+                // 弹出后与最后一位替换, 随机数组长度减一
                 int temp = nums[index];
                 shuffled[i] = temp;
-                nums[index] = nums[len];
-                nums[len--] = temp;
+                nums[index] = nums[--len];
+                nums[len] = temp;
             }
             System.arraycopy(shuffled, 0, nums, 0, nums.length);
             return nums;
