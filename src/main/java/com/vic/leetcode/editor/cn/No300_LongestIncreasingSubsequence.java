@@ -44,18 +44,38 @@
 // 
 // Related Topics 数组 二分查找 动态规划 👍 2198 👎 0
 
-  
+
 package com.vic.leetcode.editor.cn;
-public class No300_LongestIncreasingSubsequence{
+
+import java.util.Arrays;
+
+public class No300_LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new No300_LongestIncreasingSubsequence().new Solution();
+        System.out.println(solution.lengthOfLIS(new int[]{7, 7, 7, 7, 7, 7, 7}));
+        System.out.println(solution.lengthOfLIS(new int[]{0, 1, 0, 3, 2, 3}));
+        System.out.println(solution.lengthOfLIS(new int[]{10, 9, 2, 5, 3, 7, 101, 18}));
     }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int lengthOfLIS(int[] nums) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    // 动态规划
+    class Solution {
+        public int lengthOfLIS(int[] nums) {
+            int[] dp = new int[nums.length];
+            dp[0] = 1;
+            int max = 1;
+            for (int i = 1; i < nums.length; i++) {
+                dp[i] =1;
+                for (int j = 0; j < i; j++) {
+                    if (nums[j] < nums[i]) {
+                        dp[i] = Math.max(dp[j] + 1, dp[i]);
+                    }
+                }
+                max = Math.max(max, dp[i]);
+            }
+            return max;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
