@@ -137,6 +137,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No13_RomanToInteger.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No13_RomanToInteger.java" />
+              <option name="questionId" value="13" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1405_LongestHappyString.java">
           <value>
             <LeetcodeEditor>
@@ -212,6 +220,14 @@
           <value>
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No1_TwoSum.java" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No204_CountPrimes.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No204_CountPrimes.java" />
+              <option name="questionId" value="204" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -310,6 +326,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No300_LongestIncreasingSubsequence.java" />
               <option name="questionId" value="300" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No326_PowerOfThree.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/com/vic/leetcode/editor/cn/No326_PowerOfThree.java" />
+              <option name="questionId" value="326" />
             </LeetcodeEditor>
           </value>
         </entry>
